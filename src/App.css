@@ -15,7 +15,7 @@
   background-size: cover;
   margin-top: 100px;
   width: 350px;
-  height: 500px;
+  height: 520px;
   background-color: lightseagreen;
   border-radius: 5px;
   color: black;
@@ -58,9 +58,9 @@
   font-size: 25px;
 }
 .info_wrapper .degree {
-  font-size: 40px;
+  font-size: 45px;
   font-weight: bold;
-  padding: 20px;
+  padding: 20px 30px;
   margin-top: 20px;
   border-radius: 7px;
   background-color: rgba(255, 255, 255, 0.3);
@@ -84,6 +84,9 @@
 }
 .lower_info {
   margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 10px;
+  border-radius: 7px;
 }
 .lower_info span {
   font-size: 18px;

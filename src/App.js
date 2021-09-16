@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from "moment";
 import "./App.css";
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
           setWind(result.wind.speed);
           setSunrise(result.sys.sunrise);
           setSunset(result.sys.sunset);
+          console.log(result.sys.sunset)
+          console.log(result)
           setName("");
         });
     }
@@ -76,14 +79,6 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   };
 
-  const time = (number) => {
-    const myDate = new Date(number);
-    const hours = myDate.getHours();
-    const minutes = myDate.getMinutes();
-    const seconds = myDate.getSeconds();
-
-    return `${hours}:${minutes}:${seconds}`;
-  };
 
   return (
     <div className="App">
@@ -124,10 +119,10 @@ function App() {
             </div>
             <div>
               <div>
-                Sunrise: <span>{time(sunrise)}</span>AM
+                Sunrise: <span>{moment(sunrise * 1000).format('HH:mm a')}</span> 
               </div>
               <div>
-                Sunset: <span>{time(sunset)}</span>PM
+                Sunset: <span>{moment(sunset * 1000).format('HH:mm a')}</span>
               </div>
             </div>
           </div>

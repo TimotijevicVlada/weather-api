@@ -82,5 +82,12 @@
 .info_wrapper .date {
   font-size: 14px;
 }
+.lower_info {
+  margin-top: 20px;
+}
+.lower_info span {
+  font-size: 18px;
+  font-weight: bold;
+}
 
 

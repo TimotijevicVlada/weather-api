@@ -14,6 +14,12 @@ function App() {
   const [tempMin, setTempMin] = useState([]);
   const [tempMax, setTempMax] = useState([]);
   const [sky, setSky] = useState([]);
+  const [humidity, setHumidity] = useState([]);
+  const [pressure, setPressure] = useState([]);
+  const [visibility, setVisibility] = useState([]);
+  const [wind, setWind] = useState([]);
+  const [sunrise, setSunrise] = useState([]);
+  const [sunset, setSunset] = useState([]);
 
   const search = (e) => {
     if (e.key === "Enter") {
@@ -25,29 +31,63 @@ function App() {
           setTemp(result.main.temp);
           setTempMin(result.main.temp_min);
           setTempMax(result.main.temp_max);
-          setSky(result.weather[0].description)
+          setSky(result.weather[0].description);
+          setHumidity(result.main.humidity);
+          setPressure(result.main.pressure);
+          setVisibility(result.visibility);
+          setWind(result.wind.speed);
+          setSunrise(result.sys.sunrise);
+          setSunset(result.sys.sunset);
           setName("");
-          console.log(result.weather[0].description);
         });
     }
   };
 
   const date = (d) => {
-    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
 
     let day = days[d.getDay()];
     let date = d.getDate();
     let month = months[d.getMonth()];
     let year = d.getFullYear();
 
-    return `${day} ${date} ${month} ${year}`
-  }
+    return `${day} ${date} ${month} ${year}`;
+  };
 
+  const time = (number) => {
+    const myDate = new Date(number);
+    const hours = myDate.getHours();
+    const minutes = myDate.getMinutes();
+    const seconds = myDate.getSeconds();
+
+    return `${hours}:${minutes}:${seconds}`;
+  };
 
   return (
     <div className="App">
-      <main className={(temp > 16) ? 'main' : 'main rain'}>
+      <main className={temp > 16 ? "main" : "main rain"}>
         <div className="input_container">
           <input
             type="text"
@@ -64,8 +104,33 @@ function App() {
           </div>
           <div className="date">{date(new Date())}</div>
           <div className="degree">{Math.round(temp)}°C</div>
-          <div className="min_max"><span>{Math.round(tempMin)}°C</span> <span>{Math.round(tempMax)}°C</span></div>
+          <div className="min_max">
+            <span>{Math.round(tempMin)}°C</span>{" "}
+            <span>{Math.round(tempMax)}°C</span>
+          </div>
           <div className="sky">{sky}</div>
+          <div className="lower_info">
+            <div>
+              Humidity: <span>{humidity}</span>%
+            </div>
+            <div>
+              Pressure: <span>{pressure}</span>mb
+            </div>
+            <div>
+              Visibility: <span>{visibility}</span>m
+            </div>
+            <div>
+              Wind speed: <span>{wind}</span>m/s
+            </div>
+            <div>
+              <div>
+                Sunrise: <span>{time(sunrise)}</span>AM
+              </div>
+              <div>
+                Sunset: <span>{time(sunset)}</span>PM
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>

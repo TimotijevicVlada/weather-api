@@ -21,6 +21,7 @@ function App() {
   const [wind, setWind] = useState([]);
   const [sunrise, setSunrise] = useState([]);
   const [sunset, setSunset] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   const search = (e) => {
     if (e.key === "Enter") {
@@ -39,9 +40,10 @@ function App() {
           setWind(result.wind.speed);
           setSunrise(result.sys.sunrise);
           setSunset(result.sys.sunset);
-          console.log(result.sys.sunset)
-          console.log(result)
+          console.log(result.sys.sunset);
+          console.log(result);
           setName("");
+          setVisible(true);
         });
     }
   };
@@ -79,7 +81,6 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   };
 
-
   return (
     <div className="App">
       <main className={temp > 16 ? "main" : "main rain"}>
@@ -93,40 +94,48 @@ function App() {
           />
         </div>
 
-        <div className="info_wrapper">
-          <div className="city">
-            {weather.name}, {country}
+        {!visible ? (
+          <div className="no_data">
+            <h2 >There is no data currently</h2>
+            <h3 >Search for new results</h3>
           </div>
-          <div className="date">{date(new Date())}</div>
-          <div className="degree">{Math.round(temp)}°C</div>
-          <div className="min_max">
-            <span>{Math.round(tempMin)}°C</span>{" "}
-            <span>{Math.round(tempMax)}°C</span>
-          </div>
-          <div className="sky">{sky}</div>
-          <div className="lower_info">
-            <div>
-              Humidity: <span>{humidity}</span>%
+        ) : (
+          <div className="info_wrapper">
+            <div className="city">
+              {weather.name}, {country}
             </div>
-            <div>
-              Pressure: <span>{pressure}</span>mb
+            <div className="date">{date(new Date())}</div>
+            <div className="degree">{Math.round(temp)}°C</div>
+            <div className="min_max">
+              <span>{Math.round(tempMin)}°C</span>{" "}
+              <span>{Math.round(tempMax)}°C</span>
             </div>
-            <div>
-              Visibility: <span>{visibility}</span>m
-            </div>
-            <div>
-              Wind speed: <span>{wind}</span>m/s
-            </div>
-            <div>
+            <div className="sky">{sky}</div>
+            <div className="lower_info">
               <div>
-                Sunrise: <span>{moment(sunrise * 1000).format('HH:mm a')}</span> 
+                Humidity: <span>{humidity}</span>%
               </div>
               <div>
-                Sunset: <span>{moment(sunset * 1000).format('HH:mm a')}</span>
+                Pressure: <span>{pressure}</span>mb
+              </div>
+              <div>
+                Visibility: <span>{visibility}</span>m
+              </div>
+              <div>
+                Wind speed: <span>{wind}</span>m/s
+              </div>
+              <div>
+                <div>
+                  Sunrise:{" "}
+                  <span>{moment(sunrise * 1000).format("HH:mm a")}</span>
+                </div>
+                <div>
+                  Sunset: <span>{moment(sunset * 1000).format("HH:mm a")}</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </main>
     </div>
   );

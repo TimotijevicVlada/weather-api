@@ -10,6 +10,14 @@
   display: flex;
   justify-content: center;
 }
+.no_data {
+  text-align: center;
+  margin: 30px 0px;
+  color: white;
+}
+.no_data h2 {
+  margin: 20px 0px;
+}
 .main {
   background-image: url("./images/sun.jpg");
   background-size: cover;

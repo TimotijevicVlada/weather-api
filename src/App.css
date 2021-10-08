@@ -60,6 +60,9 @@
   justify-content: center;
   align-items: center;
 }
+.white {
+  color: white;
+}
 
 .info_wrapper .city {
   margin-top: 60px;
@@ -100,5 +103,6 @@
   font-size: 18px;
   font-weight: bold;
 }
+
 
 

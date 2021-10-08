@@ -22,6 +22,7 @@ function App() {
   const [sunrise, setSunrise] = useState([]);
   const [sunset, setSunset] = useState([]);
   const [visible, setVisible] = useState(false);
+  console.log(temp)
 
   const search = (e) => {
     if (e.key === "Enter") {
@@ -100,7 +101,7 @@ function App() {
             <h3 >Search for new results</h3>
           </div>
         ) : (
-          <div className="info_wrapper">
+          <div className={temp > 16 ? "info_wrapper" : "info_wrapper white"}>
             <div className="city">
               {weather.name}, {country}
             </div>

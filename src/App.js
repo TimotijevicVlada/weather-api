@@ -8,7 +8,7 @@ function App() {
     key: "857c9713e8955051b03bba131a833160",
   };
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState("Belgrade");
   const [weather, setWeather] = useState([]);
   const [country, setCountry] = useState([]);
   const [temp, setTemp] = useState([]);
@@ -22,7 +22,7 @@ function App() {
   const [sunrise, setSunrise] = useState([]);
   const [sunset, setSunset] = useState([]);
   const [visible, setVisible] = useState(false);
-  console.log(temp)
+  console.log(country)
 
   const search = (e) => {
     if (e.key === "Enter") {
@@ -48,6 +48,7 @@ function App() {
         });
     }
   };
+
 
   const date = (d) => {
     let months = [
@@ -86,6 +87,7 @@ function App() {
     <div className="App">
       <main className={temp > 16 ? "main" : "main rain"}>
         <div className="input_container">
+          <h2>Weather</h2>
           <input
             type="text"
             placeholder="Search place"
@@ -97,10 +99,11 @@ function App() {
 
         {!visible ? (
           <div className="no_data">
-            <h2 >There is no data currently</h2>
+            <h2>There is no data currently</h2>
             <h3 >Search for new results</h3>
           </div>
         ) : (
+          
           <div className={temp > 16 ? "info_wrapper" : "info_wrapper white"}>
             <div className="city">
               {weather.name}, {country}
